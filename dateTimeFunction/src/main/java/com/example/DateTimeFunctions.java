@@ -22,7 +22,8 @@ public class DateTimeFunctions {
 	 */
 	public static LocalDate getTodaysDate() {
 		//YOUR CODE STARTS HERE
-		return null;
+		// LocalDate.now() uses the system's current date and returns it as a LocalDate object.
+		return LocalDate.now();
 		//YOUR CODE ENDS HERE
 
 	}
@@ -33,7 +34,8 @@ public class DateTimeFunctions {
 	 */
 	public static LocalDate getLaterDatebyDays(LocalDate date, int x) {
 		//YOUR CODE STARTS HERE
-		return null;
+		// plusDays(x) creates and returns a new LocalDate that is x days after the input date.
+		return date.plusDays(x);
 		//YOUR CODE ENDS HERE
 
 	}
@@ -44,7 +46,8 @@ public class DateTimeFunctions {
 	 */
 	public static LocalDate getPreviousDatebyWeeks(LocalDate date, int x) {
 		//YOUR CODE STARTS HERE
-		return null;
+		// minusWeeks(x) creates and returns a new LocalDate that is x weeks before the input date.
+		return date.minusWeeks(x);
 		//YOUR CODE ENDS HERE
 
 	}
@@ -56,7 +59,24 @@ public class DateTimeFunctions {
 	 */
 	public static String getTimeDifference(LocalDate date1, LocalDate date2) {
 		//YOUR CODE STARTS HERE
-		return null;
+		// Period.between(start, end) calculates the difference in years, months, and days.
+		// To keep the result positive, the earlier date as the start and the later date as the end is used.
+		LocalDate startDate = date1;
+		LocalDate endDate = date2;
+
+		// If date1 is after date2, swaps them so the Period result represents a positive time difference.
+		if (date1.isAfter(date2)) {
+			startDate = date2;
+			endDate = date1;
+		}
+
+		// Store the calculated difference between the two dates.
+		Period difference = Period.between(startDate, endDate);
+
+		// Builds and returns the String in the exact format required by the assignment.
+		return "Year-" + difference.getYears()
+				+ ":Months-" + difference.getMonths()
+				+ ":Days-" + difference.getDays();
 		//YOUR CODE ENDS HERE
 
 	}
